@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
-
 android {
     compileSdk 32
 
@@ -30,7 +29,6 @@ android {
         jvmTarget = '1.8'
     }
 }
-
 dependencies {
     def appcompat_version = "1.4.1"
 
