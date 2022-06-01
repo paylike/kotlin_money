@@ -33,7 +33,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    implementation 'com.github.paylike:kotlin-currencies:v1.0.1'
+    implementation 'com.github.paylike:kotlin_currencies:1.0.7'
 }
 afterEvaluate {
     publishing {
@@ -41,8 +41,8 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
 
-                groupId = 'io.paylike'
-                artifactId = 'money'
+                groupId = 'com.github.paylike'
+                artifactId = 'kotlin-money'
                 version = '1.0.0'
             }
         }
