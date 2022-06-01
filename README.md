@@ -1,4 +1,9 @@
 # kotlin-money
+
+<a href="https://jitpack.io/#paylike/kotlin-money" target="_blank">
+    <img src="https://jitpack.io/v/paylike/kotlin-money.svg" />
+</a>
+
 Small utility library to help with working payment amounts in the paylike ecosystem.
 
 ## Features
@@ -8,13 +13,19 @@ functionality if we can find usecases for it.
 
 ## Usage
 
-// TODO
 ```kotlin 
-import 'package:paylike_money/dart_money.dart';
+// ...
+import com.github.paylike.kotlin_currencies.PaylikeCurrencies
+import com.github.paylike.kotlin_currencies.PaylikeCurrency
+import com.github.paylike.kotlin_currencies.generated.CurrencyCode
+import com.github.paylike.kotlin_money.Money
+import com.github.paylike.kotlin_money.PaymentAmount
+// ...
 
-void main() {
-  var eur = PaylikeCurrencies().byCode(CurrencyCode.EUR);
-  var amount = Money.fromDouble(eur, 12.5);
-  print(amount.toJSONBody());
-}
+    // ...
+    val eur: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.EUR)
+    val amount: PaymentAmount = Money.fromDouble(eur, 12.5)
+    Log.i("PaymentAmount", amount.toRepresentationString())
+    Log.i("PaymentAmount", amount.toJsonBody().toString())
+    // ...
 ```

@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
-
 android {
     compileSdk 32
 
@@ -30,7 +29,6 @@ android {
         jvmTarget = '1.8'
     }
 }
-
 dependencies {
     def appcompat_version = "1.4.1"
 
@@ -38,5 +36,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat-resources:$appcompat_version"
     implementation 'com.android.support.constraint:constraint-layout:2.0.4'
 
-    implementation project(':kotlin-money')
+    implementation project(':kotlin_money')
+    implementation 'com.github.paylike:kotlin_currencies:1.0.7'
+
 }
