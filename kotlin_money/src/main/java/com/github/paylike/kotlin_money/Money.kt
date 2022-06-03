@@ -8,10 +8,7 @@ object Money {
     private fun isInSafeRange(n: Double): Boolean = (n <= maxInt && n >= -maxInt)
 
     fun fromDouble(currency: PaylikeCurrency, n: Double): PaymentAmount {
-        if (!n.isFinite()) {
-            throw Exception("Non finite number $n")
-        }
-        if (!isInSafeRange(n)) {
+        if (!isInSafeRange(n) || !n.isFinite()) {
             throw UnsafeNumberException(n)
         }
         val split = n.toString().split('.')
