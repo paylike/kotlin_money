@@ -1,7 +1,7 @@
 # kotlin-money
 
-<a href="https://jitpack.io/#paylike/kotlin-money" target="_blank">
-    <img src="https://jitpack.io/v/paylike/kotlin-money.svg" />
+<a href="https://jitpack.io/#paylike/kotlin_money" target="_blank">
+    <img src="https://jitpack.io/v/paylike/kotlin_money.svg" />
 </a>
 
 Small utility library to help with working payment amounts in the paylike ecosystem.

@@ -144,26 +144,4 @@ class PaylikeMoneyTest {
         assertEquals(false, eurPaymentAmount.hashCode() == furtherEurPaymentAmount.hashCode())
         assertEquals(false, eurPaymentAmount.hashCode() == usdPaymentAmount.hashCode())
     }
-    @Test
-    fun paymentAmountToJsonBodyTest() {
-        val eur: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.EUR)
-        val eurPaymentAmount = PaymentAmount(eur, 10, 0)
-        val expected: Map<String, Any> = mapOf(
-            "currency" to eur,
-            "value" to 10L,
-            "exponent" to 0
-        )
-        print(expected.toString())
-        assertEquals(true, areEqual(expected, eurPaymentAmount.toJsonBody()))
-        assertEquals(true, eurPaymentAmount.toJsonBody().equals(expected))
-        assertEquals(true, eurPaymentAmount.toJsonBody() == expected)
-    }
-    private fun areEqual(first: Map<String, Any>, second: Map<String, Any>): Boolean {
-        return if (first.size != second.size) {
-            false
-        } else first.entries.stream()
-            .allMatch { (key, value): Map.Entry<String, Any> ->
-                value == second[key]
-            }
-    }
 }

@@ -12,12 +12,12 @@ import com.github.paylike.kotlin_money.PaymentAmount
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
         val eur: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.EUR)
         val amount: PaymentAmount = Money.fromDouble(eur, 12.5)
         Log.i("PaymentAmount", amount.toRepresentationString())
-        Log.i("PaymentAmount", amount.toJsonBody().toString())
+//        Log.i("PaymentAmount", Json.encodeToString(amount))
 
-        setContentView(R.layout.activity_main)
     }
 }

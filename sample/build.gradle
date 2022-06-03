@@ -37,6 +37,5 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:2.0.4'
 
     implementation project(':kotlin_money')
-    implementation 'com.github.paylike:kotlin_currencies:1.0.7'
-
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3'
 }

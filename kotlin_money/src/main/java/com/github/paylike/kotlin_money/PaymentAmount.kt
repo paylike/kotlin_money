@@ -1,18 +1,25 @@
 package com.github.paylike.kotlin_money
 
 import com.github.paylike.kotlin_currencies.PaylikeCurrency
+import kotlinx.serialization.Serializable
 
-
+@Serializable
 class PaymentAmount(_currency: PaylikeCurrency, _value: Long, _exponent: Int) {
     val currency: PaylikeCurrency = _currency
     val value: Long = _value
     val exponent: Int = _exponent
 
+    // equals only checks if the two object are equal in every field.
+    // Objects what are equal numerically but not exactly the same in every field wont be equal.
+    // For example:
+    // { currency: 'EUR', value: 150, exponent: 1 }
+    // will not be equal with
+    // { currency: 'EUR', value: 15, exponent: 0 }
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
         other as PaymentAmount
-        if (this.currency.code != other.currency.code) return false
+        if (this.currency != other.currency) return false
         return this.value == other.value && this.exponent == other.exponent
     }
 
@@ -24,7 +31,6 @@ class PaymentAmount(_currency: PaylikeCurrency, _value: Long, _exponent: Int) {
         val wholes: String
         val fraction: String
         val negative: Boolean = value < 0
-        //
         val integer: String = (if (negative) -value else value).toString()
         if (exponent <= 0) {
             wholes = integer + "".padEnd(-exponent, '0')
@@ -40,14 +46,5 @@ class PaymentAmount(_currency: PaylikeCurrency, _value: Long, _exponent: Int) {
         val paddedFraction: String = fraction.padEnd(options.padFractions, '0')
         val currencyString: String = if (options.currency) currency.code + " " else ""
         return currencyString + (if (negative) "-" else "") + paddedWholes + if (paddedFraction == "") "" else ".$paddedFraction"
-    }
-
-    fun toJsonBody(): Map<String, Any> {
-        val map = mapOf( // TODO JsonObject, we will see...
-            "currency" to currency,
-            "value" to value,
-            "exponent" to exponent,
-        )
-        return map
     }
 }
