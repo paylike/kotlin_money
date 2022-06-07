@@ -4,11 +4,7 @@ import com.github.paylike.kotlin_currencies.PaylikeCurrency
 import kotlinx.serialization.Serializable
 
 @Serializable
-class PaymentAmount(_currency: PaylikeCurrency, _value: Long, _exponent: Int) {
-    val currency: PaylikeCurrency = _currency
-    val value: Long = _value
-    val exponent: Int = _exponent
-
+class PaymentAmount(val currency: PaylikeCurrency, val value: Long, val exponent: Int) {
     // equals only checks if the two object are equal in every field.
     // Objects what are equal numerically but not exactly the same in every field wont be equal.
     // For example:

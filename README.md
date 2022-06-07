@@ -9,7 +9,7 @@ Small utility library to help with working payment amounts in the paylike ecosys
 ## Features
 
 Currently this package only supports a fraction of our JavaScript library. We may extend
-functionality if we can find usecases for it.
+functionality if we can find use-cases for it.
 
 ## Usage
 
@@ -20,6 +20,8 @@ import com.github.paylike.kotlin_currencies.PaylikeCurrency
 import com.github.paylike.kotlin_currencies.generated.CurrencyCode
 import com.github.paylike.kotlin_money.Money
 import com.github.paylike.kotlin_money.PaymentAmount
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 // ...
 
     // ...
