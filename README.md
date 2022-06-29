@@ -25,8 +25,7 @@ import kotlinx.serialization.json.Json
 // ...
 
     // ...
-    val eur: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.EUR)
-    val amount: PaymentAmount = Money.fromDouble(eur, 12.5)
+    val amount: PaymentAmount = Money.fromDouble("EUR", 12.5)
     Log.i("PaymentAmount", amount.toRepresentationString())
     Log.i("PaymentAmount", amount.toJsonBody().toString())
     // ...
