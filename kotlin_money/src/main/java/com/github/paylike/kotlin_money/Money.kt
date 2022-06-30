@@ -1,13 +1,11 @@
 package com.github.paylike.kotlin_money
 
-import com.github.paylike.kotlin_currencies.PaylikeCurrency
-
 object Money {
     private const val maxInt: Long = 9007199254740991L
 
     private fun isInSafeRange(n: Double): Boolean = (n <= maxInt && n >= -maxInt)
 
-    fun fromDouble(currency: PaylikeCurrency, n: Double): PaymentAmount {
+    fun fromDouble(currency: String, n: Double): PaymentAmount {
         if (!isInSafeRange(n) || !n.isFinite()) {
             throw UnsafeNumberException(n)
         }
