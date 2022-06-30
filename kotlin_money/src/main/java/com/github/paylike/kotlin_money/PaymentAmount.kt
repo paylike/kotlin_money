@@ -1,10 +1,9 @@
 package com.github.paylike.kotlin_money
 
-import com.github.paylike.kotlin_currencies.PaylikeCurrency
 import kotlinx.serialization.Serializable
 
 @Serializable
-class PaymentAmount(val currency: PaylikeCurrency, val value: Long, val exponent: Int) {
+class PaymentAmount(val currency: String, val value: Long, val exponent: Int) {
     // equals only checks if the two object are equal in every field.
     // Objects what are equal numerically but not exactly the same in every field wont be equal.
     // For example:
@@ -21,7 +20,7 @@ class PaymentAmount(val currency: PaylikeCurrency, val value: Long, val exponent
 
     override fun hashCode(): Int = currency.hashCode() + value.hashCode() + exponent.hashCode()
 
-    override fun toString(): String = toRepresentationString(PaymentAmountStringOptions()) // TODO now returns the default of toRepresentationString
+    override fun toString(): String = toRepresentationString(PaymentAmountStringOptions())
 
     fun toRepresentationString(options: PaymentAmountStringOptions = PaymentAmountStringOptions()): String {
         val wholes: String
@@ -40,7 +39,7 @@ class PaymentAmount(val currency: PaylikeCurrency, val value: Long, val exponent
         }
         val paddedWholes: String = wholes.padStart(options.padIntegers, ' ')
         val paddedFraction: String = fraction.padEnd(options.padFractions, '0')
-        val currencyString: String = if (options.currency) currency.code + " " else ""
+        val currencyString: String = if (options.currency) "$currency " else ""
         return currencyString + (if (negative) "-" else "") + paddedWholes + if (paddedFraction == "") "" else ".$paddedFraction"
     }
 }

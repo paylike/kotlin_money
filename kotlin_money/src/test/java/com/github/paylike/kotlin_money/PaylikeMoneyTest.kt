@@ -1,8 +1,5 @@
 package com.github.paylike.kotlin_money
 
-import com.github.paylike.kotlin_currencies.PaylikeCurrencies
-import com.github.paylike.kotlin_currencies.PaylikeCurrency
-import com.github.paylike.kotlin_currencies.generated.CurrencyCode
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThrows
 import org.junit.Test
@@ -10,7 +7,7 @@ import org.junit.Test
 class PaylikeMoneyTest {
     @Test
     fun moneyFromDoubleTest() {
-        val eur: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.EUR)
+        val eur: String = "EUR"
         assertEquals(PaymentAmount(eur, 0,0), Money.fromDouble(eur, 0.0))
         assertEquals(PaymentAmount(eur, 0,0), Money.fromDouble(eur, -0.0))
         assertEquals(PaymentAmount(eur, 10,1), Money.fromDouble(eur, 1.0))
@@ -36,7 +33,7 @@ class PaylikeMoneyTest {
     }
     @Test
     fun exceptionMoneyFromDoubleTest() {
-        val eur: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.EUR)
+        val eur: String = "EUR"
         var unsafeNumberException = assertThrows(UnsafeNumberException::class.java) {
 
             Money.fromDouble(eur, Double.MAX_VALUE + 1.0)
@@ -47,15 +44,16 @@ class PaylikeMoneyTest {
         var exception = assertThrows(Exception::class.java) {
             Money.fromDouble(eur, Double.POSITIVE_INFINITY)
         }
-        assertEquals("Non finite number Infinity", exception.message)
+        assertEquals("Number is not in safe range ${Double.POSITIVE_INFINITY}", exception.message)
+
         exception = assertThrows(Exception::class.java) {
             Money.fromDouble(eur, Double.NEGATIVE_INFINITY)
         }
-        assertEquals("Non finite number -Infinity", exception.message)
+        assertEquals("Number is not in safe range ${Double.NEGATIVE_INFINITY}", exception.message)
     }
     @Test
     fun paymentAmountToRepresentationalStringtest() {
-        val eur: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.EUR)
+        val eur: String = "EUR"
 
         assertEquals("EUR 0", Money.fromDouble(eur, 0.0).toRepresentationString())
 
@@ -95,7 +93,7 @@ class PaylikeMoneyTest {
     }
     @Test
     fun paymentAmountToStringtest() {
-        val eur: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.EUR)
+        val eur: String = "EUR"
         assertEquals("EUR 0", PaymentAmount(eur, 0, 0).toString())
         assertEquals("EUR 1", PaymentAmount(eur, 1, 0).toString())
         assertEquals("EUR 0.1", PaymentAmount(eur, 1, 1).toString())
@@ -106,10 +104,10 @@ class PaylikeMoneyTest {
     }
     @Test
     fun paymentAmountEqualsTest() {
-        val usd: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.USD)
+        val usd: String = "USD"
         val usdPaymentAmount = PaymentAmount(usd, 10, 0)
 
-        val eur: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.EUR)
+        val eur: String = "EUR"
         val eurPaymentAmount = PaymentAmount(eur, 10, 0)
         val identicalEurPaymentAmount = PaymentAmount(eur, 10, 0)
         val otherEurPaymentAmount = PaymentAmount(eur, 11, 0)
@@ -129,10 +127,10 @@ class PaylikeMoneyTest {
     }
     @Test
     fun paymentAmountHashCodeTest() {
-        val usd: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.USD)
+        val usd: String = "USD"
         val usdPaymentAmount = PaymentAmount(usd, 10, 0)
 
-        val eur: PaylikeCurrency = PaylikeCurrencies.byCode(CurrencyCode.EUR)
+        val eur: String = "EUR"
         val eurPaymentAmount = PaymentAmount(eur, 10, 0)
         val identicalEurPaymentAmount = PaymentAmount(eur, 10, 0)
         val otherEurPaymentAmount = PaymentAmount(eur, 11, 0)
