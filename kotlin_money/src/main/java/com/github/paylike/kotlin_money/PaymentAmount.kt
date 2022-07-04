@@ -4,12 +4,14 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class PaymentAmount(val currency: String, val value: Long, val exponent: Int) {
-    // equals only checks if the two object are equal in every field.
-    // Objects what are equal numerically but not exactly the same in every field wont be equal.
-    // For example:
-    // { currency: 'EUR', value: 150, exponent: 1 }
-    // will not be equal with
-    // { currency: 'EUR', value: 15, exponent: 0 }
+    /**
+     * equals only checks if the two object are equal in every field.
+     * Objects what are equal numerically but not exactly the same in every field wont be equal.
+     * For example:
+     * { currency: 'EUR', value: 150, exponent: 1 }
+     * will not be equal with
+     * { currency: 'EUR', value: 15, exponent: 0 }
+     */
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
