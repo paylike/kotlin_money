@@ -6,19 +6,16 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "io.paylike.sample"
+        applicationId "com.github.paylike.sample"
         minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
@@ -28,13 +25,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
 }
 dependencies {
-    def appcompat_version = '1.4.2'
-
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "androidx.appcompat:appcompat-resources:$appcompat_version"
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-
-    api project(':kotlin_money')
+    implementation project(':kotlin_money')
 }
